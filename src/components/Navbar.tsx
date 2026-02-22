@@ -19,52 +19,72 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "nav-glass" : "bg-transparent"
+        scrolled ? "nav-glass shadow-lg shadow-background/50" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+          <motion.div
+            className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-primary"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <Zap className="h-5 w-5 text-primary-foreground" />
             <div className="absolute inset-0 rounded-lg bg-primary opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-50" />
-          </div>
+          </motion.div>
           <span className="text-xl font-bold font-display text-foreground">Timeo</span>
         </a>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
+          {navLinks.map((link, i) => (
+            <motion.a
               key={link.label}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 relative group"
             >
               {link.label}
-            </a>
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+            </motion.a>
           ))}
-          <a
+          <motion.a
             href="https://timeo.my/sign-in"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
           >
             Sign In
-          </a>
-          <a href="https://timeo.my/sign-up" className="btn-gold text-sm !px-6 !py-2.5">
+          </motion.a>
+          <motion.a
+            href="https://timeo.my/sign-up"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="btn-gold text-sm !px-6 !py-2.5"
+          >
             Get Started
-          </a>
+          </motion.a>
         </div>
 
         {/* Mobile toggle */}
-        <button
+        <motion.button
           className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
+          whileTap={{ scale: 0.9 }}
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        </motion.button>
       </div>
 
       {/* Mobile menu */}
@@ -74,25 +94,41 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="md:hidden nav-glass border-t border-border/30"
           >
             <div className="container mx-auto flex flex-col gap-4 px-6 py-6">
-              {navLinks.map((link) => (
-                <a
+              {navLinks.map((link, i) => (
+                <motion.a
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
-              <a href="https://timeo.my/sign-in" className="text-muted-foreground hover:text-foreground transition-colors">
+              <motion.a
+                href="https://timeo.my/sign-in"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
                 Sign In
-              </a>
-              <a href="https://timeo.my/sign-up" className="btn-gold text-center text-sm">
+              </motion.a>
+              <motion.a
+                href="https://timeo.my/sign-up"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+                className="btn-gold text-center text-sm"
+              >
                 Get Started Free
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}
