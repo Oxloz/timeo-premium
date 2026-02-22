@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import timeoLogo from "@/assets/timeo-logo.png";
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -30,12 +31,11 @@ const Navbar = () => {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
           <motion.div
-            className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-primary"
+            className="relative flex h-9 w-9 items-center justify-center rounded-lg overflow-hidden"
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Zap className="h-5 w-5 text-primary-foreground" />
-            <div className="absolute inset-0 rounded-lg bg-primary opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-50" />
+            <img src={timeoLogo} alt="Timeo" className="h-9 w-9 object-contain" />
           </motion.div>
           <span className="text-xl font-bold font-display text-foreground">Timeo</span>
         </a>
