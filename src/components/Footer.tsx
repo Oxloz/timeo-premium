@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import timeoLogo from "@/assets/timeo-logo.png";
+import { Zap } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -12,8 +12,8 @@ const Footer = () => {
           className="flex items-center gap-2.5 group"
           whileHover={{ scale: 1.05 }}
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg overflow-hidden">
-            <img src={timeoLogo} alt="Timeo" className="h-8 w-8 object-contain" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+            <Zap className="h-4 w-4 text-primary-foreground" />
           </div>
           <span className="text-lg font-bold font-display text-foreground">Timeo</span>
         </motion.a>
