@@ -11,12 +11,21 @@ const Footer = () => {
           href="#"
           className="flex items-center gap-2.5 group"
           whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-xl overflow-hidden" style={{ background: "var(--gradient-gold)" }}>
+          <motion.div
+            className="logo-icon flex h-8 w-8 items-center justify-center"
+            whileHover={{ rotate: 5 }}
+          >
             <Zap className="h-4 w-4 text-primary-foreground relative z-10" />
-            <div className="absolute inset-0 rounded-xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-60" style={{ background: "var(--gradient-gold)" }} />
-          </div>
-          <span className="text-lg font-bold font-display text-gradient-gold">Timeo</span>
+          </motion.div>
+          <motion.span
+            className="text-lg font-bold font-display text-gradient-gold"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Timeo
+          </motion.span>
         </motion.a>
         <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} Timeo. All rights reserved.
