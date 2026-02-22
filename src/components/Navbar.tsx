@@ -30,15 +30,19 @@ const Navbar = () => {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
           <motion.div
-            className="relative flex h-9 w-9 items-center justify-center rounded-xl overflow-hidden"
-            style={{ background: "var(--gradient-gold)" }}
+            className="logo-icon flex h-9 w-9 items-center justify-center"
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
           >
             <Zap className="h-5 w-5 text-primary-foreground relative z-10" />
-            <div className="absolute inset-0 rounded-xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-60" style={{ background: "var(--gradient-gold)" }} />
           </motion.div>
-          <span className="text-xl font-bold font-display text-gradient-gold">Timeo</span>
+          <motion.span
+            className="text-xl font-bold font-display text-gradient-gold"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Timeo
+          </motion.span>
         </a>
 
         {/* Desktop Links */}
